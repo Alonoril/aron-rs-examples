@@ -48,6 +48,7 @@ impl PsServiceTrait for PsService {
             .choose_multiple(&mut rng, job.purchase_size)
             .cloned()
             .collect();
+        info!("new wallets: {:?}", wallets);
 
         let job = job.with_wallets(wallets);
         // Start the job

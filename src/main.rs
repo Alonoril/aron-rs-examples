@@ -26,7 +26,7 @@ async fn start_ps(svc: &Services) -> AppResult<()> {
     let job = PrivateJob {
         job_id: 1,
         interval_min: 1,
-        interval_max: 5,
+        interval_max: 2,
         wallets: vec![],
         purchase_size: 3,
     };

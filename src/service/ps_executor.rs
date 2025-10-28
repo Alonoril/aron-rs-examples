@@ -56,7 +56,7 @@ impl PrivateSaleExecutor {
     #[instrument(skip_all, "buy", fields(wallet = wallet))]
     async fn do_purchase(&self, wallet: &str) -> AppResult<()> {
         // 模拟购买
-        tokio::time::sleep(std::time::Duration::from_secs(5)).await;
+        tokio::time::sleep(std::time::Duration::from_secs(1)).await;
         warn!("do purchase private sale");
         Ok(())
     }
