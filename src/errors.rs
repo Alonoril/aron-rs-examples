@@ -1,4 +1,23 @@
 #[macro_export]
+macro_rules! map_err {
+    // 无 msg：旧逻辑，用闭包包装（必须用闭包）
+    ($code:expr) => {
+        |err| {
+            tracing::error!("{}, reason: {}", $code, err);
+            base_infra::result::AppError::Anyhow($code, anyhow::anyhow!(err))
+        }
+    };
+
+    // 有 msg：直接返回 any_msg_err，交给它决定错误类型
+    ($code:expr, $msg:expr) => {{
+        tracing::error!("{} {}", $code, $msg);
+        $crate::errors::any_msg_err($code, $msg)
+    }};
+}
+
+
+
+#[macro_export]
 macro_rules! map_err_v1 {
     ($code:expr) => {
         |err| {
@@ -54,7 +73,7 @@ where
     E: std::error::Error + Into<anyhow::Error>,
 {
     move |err| {
-        tracing::error!("{} {}, reason: {}", code, msg, err);
+        tracing::error!("{}, reason: {}", code.code(), err);
         base_infra::result::AppError::ExtAnyhow(code, msg.to_string(), anyhow::anyhow!(err))
     }
 }

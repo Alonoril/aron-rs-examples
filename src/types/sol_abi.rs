@@ -2,7 +2,7 @@ use crate::errors::{AcErr, any_err, any_msg_err};
 // use crate::{map_err_v1, map_err_v2};
 use alloy_dyn_abi::DynSolType;
 use alloy_primitives::Bytes;
-use base_infra::else_err;
+use base_infra::{else_err, map_err};
 use base_infra::result::AppResult;
 use tracing::debug;
 
@@ -100,7 +100,8 @@ impl ToStrTrait for Bytes {
 pub fn sol_string_to_str(bs: &Bytes) -> AppResult<String> {
     let ty: DynSolType = "string"
         .parse()
-        .map_err(any_msg_err(&AcErr::IllSolTypeValue, "SolType(`string`)"))?;
+        .map_err(map_err!(&AcErr::IllSolTypeValue, v2 "SolType(`string`)"))?;
+        // .map_err(any_msg_err(&AcErr::IllSolTypeValue, "SolType(`string`)"))?;
     let res = ty
         .abi_decode(&bs)
         .map_err(any_err(&AcErr::EvmSolStrParseErr))?;
