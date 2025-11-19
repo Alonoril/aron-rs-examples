@@ -6,6 +6,7 @@ use tracing_subscriber::layer::SubscriberExt;
 use tracing_subscriber::registry;
 use tracing_subscriber::util::SubscriberInitExt;
 
+pub mod errors;
 pub mod service;
 pub mod types;
 
