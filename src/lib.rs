@@ -6,9 +6,10 @@ use tracing_subscriber::layer::SubscriberExt;
 use tracing_subscriber::registry;
 use tracing_subscriber::util::SubscriberInitExt;
 
-pub mod errors;
+pub mod error;
 pub mod service;
 pub mod types;
+pub mod exams;
 
 pub struct Services {
     pub ps_svc: DynPsService,

@@ -11,11 +11,9 @@ macro_rules! map_err {
     // 有 msg：直接返回 any_msg_err，交给它决定错误类型
     ($code:expr, $msg:expr) => {{
         tracing::error!("{} {}", $code, $msg);
-        $crate::errors::any_msg_err($code, $msg)
+        $crate::error::any_msg_err($code, $msg)
     }};
 }
-
-
 
 #[macro_export]
 macro_rules! map_err_v1 {
@@ -84,3 +82,19 @@ base_infra::gen_impl_code_enum! {
         EvmSolStrParseErr = ("EST002", "Failed to parse evm solidity type to rust string"),
     }
 }
+
+base_infra::gen_impl_code_enum! {
+    DBErr {
+        InitDbPoolErr = ("DBP001", "error while initializing the database connection pool"),
+    }
+}
+
+base_infra::gen_impl_code_enum! {
+	GrpErr {
+		PostGraphqlErr = ("GRP001", "Failed to post graphql data for"),
+		ParseGraphData = ("GRP002", "Failed to parse graph data for"),
+		GraphDataEmpty = ("GRP003", "Graph data is empty for"),
+		GraphInnerError = ("GRP004", "Graph internal error for"),
+	}
+}
+
