@@ -1,13 +1,22 @@
 use serde::{Deserialize, Serialize, de::Error as DeError};
+use std::fmt::{Display, Formatter};
 
-#[derive(Copy, Clone, Debug, Eq, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Default, Hash, Serialize, Deserialize)]
 pub enum DexId {
     #[default]
     Unknown,
     UniV2,
     UniV3,
 }
-
+impl Display for DexId {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        match self {
+            DexId::UniV2 => write!(f, "UNI_V2"),
+            DexId::UniV3 => write!(f, "UNI_V3"),
+            DexId::Unknown => write!(f, "Unknown"),
+        }
+    }
+}
 #[derive(Debug, Deserialize)]
 pub struct Token {
     pub id: String,
@@ -41,6 +50,10 @@ impl PoolInfo {
     // }
 }
 
+#[derive(Deserialize, Debug)]
+pub struct PairsResponse {
+    pub pairs: Vec<PoolInfo>,
+}
 #[derive(Deserialize, Debug)]
 pub struct PoolsResponse {
     pub pools: Vec<PoolInfo>,

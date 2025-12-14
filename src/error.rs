@@ -95,6 +95,7 @@ base_infra::gen_impl_code_enum! {
 		ParseGraphData = ("GRP002", "Failed to parse graph data for"),
 		GraphDataEmpty = ("GRP003", "Graph data is empty for"),
 		GraphInnerError = ("GRP004", "Graph internal error for"),
+        UnsupportedDexId = ("GRP005", "Unsupported dex id for"),
 	}
 }
 
