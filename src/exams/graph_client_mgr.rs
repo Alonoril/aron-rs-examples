@@ -15,6 +15,7 @@ pub trait DexGraphClientTrait {
     async fn get_top_pools(&self, num_pools: usize) -> AppResult<Vec<PoolInfo>>;
 }
 
+#[derive(Clone)]
 pub struct GraphClientManager {
     graph_clients: HashMap<DexId, DynDexGraphClient>,
 }
