@@ -10,6 +10,7 @@ pub mod error;
 pub mod service;
 pub mod types;
 pub mod exams;
+pub mod kline_api;
 
 pub struct Services {
     pub ps_svc: DynPsService,
