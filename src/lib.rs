@@ -1,25 +1,21 @@
-use crate::service::private_svc::{DynPsService, PsService};
 use base_infra::WorkerGuard;
-use std::sync::Arc;
 use tracing_subscriber::fmt::Layer;
 use tracing_subscriber::layer::SubscriberExt;
 use tracing_subscriber::registry;
 use tracing_subscriber::util::SubscriberInitExt;
 
 pub mod error;
+mod exams;
+mod kline_api;
+pub mod kline_rdb;
 pub mod service;
 pub mod types;
-pub mod exams;
-pub mod kline_api;
 
-pub struct Services {
-    pub ps_svc: DynPsService,
-}
+pub struct Services {}
 
 impl Services {
     pub fn new() -> Self {
-        let ps_svc = Arc::new(PsService::new()) as DynPsService;
-        Self { ps_svc }
+        Self {}
     }
 }
 

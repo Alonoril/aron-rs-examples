@@ -100,7 +100,7 @@ impl ToStrTrait for Bytes {
 pub fn sol_string_to_str(bs: &Bytes) -> AppResult<String> {
     let ty: DynSolType = "string"
         .parse()
-        .map_err(map_err!(&AcErr::IllSolTypeValue, v2 "SolType(`string`)"))?;
+        .map_err(map_err!(&AcErr::IllSolTypeValue, any "SolType(`string`)"))?;
     // .map_err(any_msg_err(&AcErr::IllSolTypeValue, "SolType(`string`)"))?;
     let res = ty
         .abi_decode(&bs)

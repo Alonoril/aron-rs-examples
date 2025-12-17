@@ -2,7 +2,7 @@ use crate::error::GrpErr;
 use base_infra::result::AppResult;
 use base_infra::{else_err, err};
 use graphql_client::{QueryBody, Response};
-use http_client::http::HttpClient;
+use base_util::http::HttpClient;
 use reqwest::{Client, IntoUrl};
 use serde::Serialize;
 use serde::de::DeserializeOwned;
