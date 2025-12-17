@@ -52,3 +52,11 @@ where
 		self.next_impl().transpose()
 	}
 }
+#[cfg(test)]
+mod tests {
+
+    #[test]
+    fn test_kline_iter() {
+        println!("test_kline_iter");
+    }
+}
