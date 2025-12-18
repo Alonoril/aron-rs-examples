@@ -7,11 +7,12 @@ authors = ["Aronori"]
 [dependencies]
 base-infra = { git = "https://github.com/alonoril/infra-rs", rev = "022e23eb", features = ["tokio-pool"] }
 base-util = { git = "https://github.com/alonoril/infra-rs", rev = "022e23eb" }
+rksdb-cfg = { git = "https://github.com/alonoril/infra-rs", rev = "022e23eb" }
 rksdb-infra = { git = "https://github.com/alonoril/infra-rs", rev = "022e23eb" }
 
 chain-types = { git = "https://github.com/alonoril/chain-tools", rev = "f9bc85ab", features = ["endless"] }
 
-tokio = { version = "1", features = ["rt-multi-thread", "macros", "net", "time", "sync"] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "net", "time", "sync", "rt"] }
 async-trait = "0.1"
 futures = "0.3"
 
